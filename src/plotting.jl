@@ -1,7 +1,7 @@
 module Plotting
 
 using Reexport
-using StaticArrays, JuLIP, Plots
+using StaticArrays, JuLIP, Plots, NBodyIPs
 
 export slice_plot, force_plot, energy_plot
 
@@ -78,7 +78,7 @@ function force_plot(test_data, IP; s = 50)
 end
 
 function energy_plot(test_data, IP; s = 50)
-    data = sortcols(hcat([[split(test_data[i].configtype, ":")[1], test_data[i].D["E"][1], energy(IP, Atoms(test_data[i]))] for i in  1:s:length(test_data)]...))
+    data = sortcols(hcat([[split(test_data[i].configtype, ":")[1], (test_data[i].D["E"][1]/length(test_data[i].at.Z)), (energy(IP, Atoms(test_data[i]))/length(test_data[i].at.Z))] for i in  1:s:length(test_data)]...))
 
     uniq_config_sel = unique(data[1,:])
 
@@ -100,7 +100,7 @@ function energy_plot(test_data, IP; s = 50)
         indices = find(data[1,:] .== uniq_config)
         min, max = findmin(indices)[1], findmax(indices)[1]
         p1 = scatter!(p1, data[2, min:max], data[3, min:max], label=uniq_config, legend=:bottomright)
-        p2 = scatter!(p2, data[2, min:max], abs.(data[3, min:max] - data[2, min:max]), label=uniq_config, legend=false, yaxis=(:log10, (0.00005,2)))
+        p2 = scatter!(p2, data[2, min:max], abs.(data[3, min:max] - data[2, min:max]), label=uniq_config, legend=false, yaxis=(:log10, (0.00005,0.5)))
     end
 
     p1 = plot!(p1, [plot_min, plot_max], [plot_min, plot_max], color="black")
