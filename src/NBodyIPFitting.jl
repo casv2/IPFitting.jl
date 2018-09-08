@@ -48,7 +48,7 @@ include("regularisers.jl")
 @reexport using NBodyIPFitting.Regularisers
 
 include("plotting.jl")
-@reeport using NBodyIPFitting.Plotting
+@reexport using NBodyIPFitting.Plotting
 
 # #visualisation module
 # include("PIPplot.jl")

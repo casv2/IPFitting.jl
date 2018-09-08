@@ -1,5 +1,6 @@
 module Plotting
 
+using Reexport
 using StaticArrays, JuLIP, Plots
 
 export slice_plot, force_plot, energy_plot
@@ -105,4 +106,6 @@ function energy_plot(test_data, IP; s = 50)
     p1 = plot!(p1, [plot_min, plot_max], [plot_min, plot_max], color="black")
 
     plot(p1, p2, layout=(1,2), size=(1400,700))
+end
+
 end
