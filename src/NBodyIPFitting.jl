@@ -50,9 +50,8 @@ include("regularisers.jl")
 include("weights.jl")
 @reexport using NBodyIPFitting.Weights
 
-
 # #visualisation module
-# include("PIPplot.jl")
-# @reexport using NBodyIPs.PIPplot
+include("plotting.jl")
+@reexport using NBodyIPFitting.Plotting
 
 end # module
