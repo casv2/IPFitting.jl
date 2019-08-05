@@ -2,7 +2,7 @@
 import Base: ==, convert, vec
 
 import JuLIP
-using JuLIP: Atoms, JVec, JMat, JVecs, AbstractCalculator, mat, vecs,
+using JuLIP: Atoms, JVec, JMat, AbstractCalculator, mat, vecs,
              numbers, positions, cell, pbc
 
 export LsqDB, Dat, basis, configs, config
